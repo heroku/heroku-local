@@ -7,3 +7,4 @@ dependencies:
     - sudo add-apt-repository ppa:duggan/bats -y
     - sudo apt-get update
     - sudo apt-get install bats
+    - heroku plugins:link .
