@@ -23,7 +23,8 @@ function * run (context) {
   }
 
   return new Promise((resolve, reject) => {
-    fork('foreman/nf.js', {execArgv})
+    fork('foreman/nf.js', execArgv)
+    // no need to return anything, foreman will exit
   })
 }
 
