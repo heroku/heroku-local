@@ -5,8 +5,8 @@ setup() {
 }
 
 @test "run" {
-  run heroku local:run echo 'it works (web)!'
+  run heroku local:run echo 'it works!'
   echo $output
   [ "$status" -eq 0 ]
-  [[ "$output" =~ "it works (web)!" ]]
+  [[ "$output" =~ "it works!" ]]
 }
