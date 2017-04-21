@@ -1,0 +1,12 @@
+#!/usr/bin/env bats
+
+setup() {
+  run heroku plugins:link .
+}
+
+@test "run" {
+  run heroku local:run echo 'it works (web)!'
+  echo $output
+  [ "$status" -eq 0 ]
+  [[ "$output" =~ "it works (web)!" ]]
+}

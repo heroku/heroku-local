@@ -2,7 +2,6 @@
 
 const co = require('co')
 const cli = require('heroku-cli-util')
-const {fork} = require('child_process')
 
 function * run (context) {
   if (context.flags.restart) throw new Error('--restart is no longer available\nUse forego instead: https://github.com/ddollar/forego')
@@ -21,13 +20,7 @@ function * run (context) {
     let processes = Object.keys(procHash).filter((x) => x !== 'release')
     execArgv.push(processes.join(','))
   }
-  let root = context.config ? context.config.root : '.'
-  let nf = fork(`${root}/node_modules/foreman/nf.js`, execArgv)
-  return new Promise((resolve, reject) => {
-    nf.on('exit', function (code) {
-      resolve()
-    })
-  })
+  yield require('../lib/fork_foreman')(execArgv)
 }
 
 const cmd = {
