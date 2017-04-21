@@ -8,7 +8,7 @@ function * run (context) {
   if (context.flags.restart) throw new Error('--restart is no longer available\nUse forego instead: https://github.com/ddollar/forego')
   if (context.flags.concurrency) throw new Error('--concurrency is no longer available\nUse forego instead: https://github.com/ddollar/forego')
 
-  let execArgv = ['', 'heroku local', 'start']
+  let execArgv = ['start']
 
   if (context.flags.procfile) execArgv.push('--procfile', context.flags.procfile)
   if (context.flags.env) execArgv.push('--env', context.flags.env)
@@ -21,10 +21,11 @@ function * run (context) {
     let processes = Object.keys(procHash).filter((x) => x !== 'release')
     execArgv.push(processes.join(','))
   }
-
+  let nf = fork('./node_modules/foreman/nf.js', execArgv)
   return new Promise((resolve, reject) => {
-    fork('foreman/nf.js', execArgv)
-    // no need to return anything, foreman will exit
+    nf.on('exit', function (code) {
+      resolve()
+    })
   })
 }
 
