@@ -21,7 +21,7 @@ function * run (context) {
     let processes = Object.keys(procHash).filter((x) => x !== 'release')
     execArgv.push(processes.join(','))
   }
-  let nf = fork('./node_modules/foreman/nf.js', execArgv)
+  let nf = fork(`${context.config.root}/node_modules/foreman/nf.js`, execArgv)
   return new Promise((resolve, reject) => {
     nf.on('exit', function (code) {
       resolve()
