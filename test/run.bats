@@ -13,5 +13,5 @@ setup() {
 
 @test "run propagates exit 1" {
   run heroku local:run exit 1
-  [ "$status" -eq 35 ]
+  [ "$status" -eq 1 ]
 }
