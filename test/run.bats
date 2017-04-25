@@ -10,3 +10,8 @@ setup() {
   [ "$status" -eq 0 ]
   [[ "$output" =~ "it works!" ]]
 }
+
+@test "run propagates exit 1" {
+  run heroku local:run exit 1
+  [ "$status" -eq 35 ]
+}
