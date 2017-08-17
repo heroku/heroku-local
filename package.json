@@ -6,6 +6,9 @@
   "bugs": {
     "url": "https://github.com/heroku/heroku-local/issues"
   },
+  "bin": {
+    "heroku": "index.js"
+  },
   "dependencies": {
     "@heroku/foreman": "^2.0.2",
     "co": "^4.6.0",
