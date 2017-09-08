@@ -13,5 +13,9 @@ module.exports = {
   command: 'version',
   description: 'display node-foreman version',
   help: 'Display node-foreman version',
-  run: cli.command(co.wrap(run))
+  run: cli.command(co.wrap(run)),
+  help: `Example:
+
+  $ heroku local:version
+  2.2.2`
 }
