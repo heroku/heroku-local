@@ -27,7 +27,7 @@ module.exports = {
   description: 'run a one-off command',
   help: `Example:
 
-    heroku local:run bin/migrate`,
+    $ heroku local:run bin/migrate`,
   variableArgs: true,
   flags: [
     {name: 'env', char: 'e', hasValue: true, completion: FileCompletion},
