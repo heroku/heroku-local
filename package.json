@@ -7,7 +7,6 @@
     "url": "https://github.com/heroku/heroku-local/issues"
   },
   "dependencies": {
-    "@heroku-cli/command": "^8.0.5",
     "@heroku/foreman": "^2.0.2",
     "co": "^4.6.0",
     "heroku-cli-util": "^8.0.6",
@@ -16,6 +15,8 @@
   "devDependencies": {
     "@oclif/dev-cli": "^1.13.1",
     "@oclif/plugin-legacy": "^1.0.10",
+    "eslint": "^4.19.1",
+    "eslint-config-oclif": "^1.4.0",
     "standard": "^11.0.1"
   },
   "files": [
@@ -35,7 +36,7 @@
     "url": "https://github.com/heroku/heroku-local"
   },
   "scripts": {
-    "test": "bats test && standard",
+    "test": "bats test && eslint .",
     "prepublishOnly": "oclif-dev manifest",
     "postpublish": "rm .oclif.manifest.json"
   },

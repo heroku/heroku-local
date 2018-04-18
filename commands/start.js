@@ -4,7 +4,7 @@ const co = require('co')
 const cli = require('heroku-cli-util')
 const {FileCompletion} = require('@heroku-cli/command/lib/completions')
 
-function * run (context) {
+function * run(context) {
   if (context.flags.restart) throw new Error('--restart is no longer available\nUse forego instead: https://github.com/ddollar/forego')
   if (context.flags.concurrency) throw new Error('--concurrency is no longer available\nUse forego instead: https://github.com/ddollar/forego')
 
@@ -18,7 +18,7 @@ function * run (context) {
   } else {
     let procfile = context.flags.procfile || 'Procfile'
     let procHash = require('@heroku/foreman/lib/procfile.js').loadProc(procfile)
-    let processes = Object.keys(procHash).filter((x) => x !== 'release')
+    let processes = Object.keys(procHash).filter(x => x !== 'release')
     execArgv.push(processes.join(','))
   }
   yield require('../lib/fork_foreman')(execArgv)
@@ -41,12 +41,12 @@ Examples:
     {name: 'env', char: 'e', hasValue: true, description: 'location of env file (defaults to .env)', completion: FileCompletion},
     {name: 'port', char: 'p', hasValue: true, description: 'port to listen on'},
     {name: 'restart', char: 'r', hasValue: false, hidden: true, description: 'restart process if it dies'},
-    {name: 'concurrency', char: 'c', hasValue: true, hidden: true, description: 'number of processes to start'}
+    {name: 'concurrency', char: 'c', hasValue: true, hidden: true, description: 'number of processes to start'},
   ],
-  run: cli.command(co.wrap(run))
+  run: cli.command(co.wrap(run)),
 }
 
 module.exports = [
   cmd,
-  Object.assign({command: 'start'}, cmd)
+  Object.assign({command: 'start'}, cmd),
 ]

@@ -4,8 +4,8 @@ const co = require('co')
 const cli = require('heroku-cli-util')
 const {FileCompletion} = require('@heroku-cli/command/lib/completions')
 
-function * run (context) {
-  if (context.args.length < 1) {
+function * run(context) {
+  if (context.args.length === 0) {
     cli.error('Usage: heroku local:run [COMMAND]\nMust specify command to run')
     process.exit(-1)
   }
@@ -31,7 +31,7 @@ module.exports = {
   variableArgs: true,
   flags: [
     {name: 'env', char: 'e', hasValue: true, completion: FileCompletion},
-    {name: 'port', char: 'p', hasValue: true}
+    {name: 'port', char: 'p', hasValue: true},
   ],
-  run: cli.command(co.wrap(run))
+  run: cli.command(co.wrap(run)),
 }
