@@ -37,7 +37,12 @@
     "postpublish": "rm .oclif.manifest.json"
   },
   "oclif": {
-    "commands": "./commands"
+    "commands": "./commands",
+    "topics": {
+      "local": {
+        "description": "run heroku app locally"
+      }
+    }
   },
   "engines": {
     "node": ">=8.0.0"
